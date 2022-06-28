@@ -1,0 +1,11 @@
+checkpoints/*
+!checkpoints/README_cn.md
+!checkpoints/README.md
+work_dirs
+configs/TwoStage
+test_datasets/middle_scale
+temp
+__pycache__
+.*
+!.gitignore
+!.gitattributes
