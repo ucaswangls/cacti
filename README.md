@@ -1,11 +1,12 @@
-[简体中文](README.md)  
+[简体中文](README_cn.md)  
 
 # Introduction
+
 <div align="center">
   <img src="docs/images/SCI.png" width="600"/>  
-Fig1. The Block Diagram of Video Snapshot Compressive Imaging 
+  
+  Fig1. The Block Diagram of Video Snapshot Compressive Imaging 
 </div>
-
 
 Video Snapshot Compressive Imaging (Video SCI) mainly focus on capturing highspeed scenario using a low speed camera and capturing high dimensional data in a single shot in order to  minimize network transmission bandwidth, lowering time and hardware cost. These goals can be achieved by capturing 3D video data using a 2D detector and then storing and transmitting the video data into a 2D data matrix.
 
@@ -16,19 +17,22 @@ CACTI Library was born in SCI Lab, Westlake University. We sincerely hope our li
 <div align="center">
   <img src="docs/gif/kobe.gif" width="1000"/>  
   <img src="docs/gif/crash.gif" width="1000"/>  
+  
     Fig2. Reconstructed Gray Value Data via Different Algorithms
 </div>
 
 <div align="center">
   <img src="docs/gif/Bosphorus.gif" width="1000"/> 
   <img src="docs/gif/ShakeNDry.gif" width="1000"/> 
-    Fig3. Reconstructed Colored Data via Different Algorithms
+
+  Fig3. Reconstructed Colored Data via Different Algorithms
 </div>
 
 # Supported Algorithm 
 <div align="center">
-  <img src="docs/images/psnr_time.png" width="1000"/>
-    Fig3. Reconstruction Quality Comparison between Different Algorithms on Testing Dataset
+  <img src="docs/images/psnr_time.png" width="600"/>
+
+  Fig3. Reconstruction Quality Comparison between Different Algorithms on Testing Dataset
 </div>
 
 ## Iterative Optimization Method 
