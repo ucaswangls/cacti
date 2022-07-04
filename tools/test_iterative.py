@@ -101,7 +101,6 @@ if __name__=="__main__":
                         x,y1 = GAP_denoise(denoiser,x,single_meas,y1,mask,mask_s,sigma)
                     else:
                         raise TypeError("denoise method undefined!")
-
                 if cfg.show_flag:
                     single_psnr,single_ssim = 0,0
                     output = x[0].cpu().numpy()

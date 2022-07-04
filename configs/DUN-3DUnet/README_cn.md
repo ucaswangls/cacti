@@ -40,13 +40,13 @@ CUDA_VISIBLE_DEVICES=0,1,2,3 python -m torch.distributed.launch --nproc_per_node
 
 单GPU训练可通过以下方式进行启动，默认为0号显卡，也可通过设置CUDA_VISIBLE_DEVICES编号选择显卡：
 ```
-python tootls/train.py configs/DUN-3DUnet/dun3dunet.py
+python tools/train.py configs/DUN-3DUnet/dun3dunet.py
 ```
 
 ## 仿真数据集测试
 指定权重参数路径，执行以下命令可在六个基准仿真数据集上进行测试。
 ```
-python tootls/test_deeplearning.py configs/DUN-3DUnet/dun3dunet.py --weights=checkpoints/dun3dunet/dun3dunet.pth
+python tools/test_deeplearning.py configs/DUN-3DUnet/dun3dunet.py --weights=checkpoints/dun3dunet/dun3dunet.pth
 ```
 * --weights 权重参数路径  
 注意：权重参数路径可以通过 --weight 进行指定，也可以修改配置文件中checkpoints值，相应权重可以在 [dropbox](https://www.dropbox.com/sh/96nf7jzabhqj4mh/AAB09QXrNGi_kujDDnWn6G32a?dl=0) 进行下载。

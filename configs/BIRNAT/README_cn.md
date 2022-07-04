@@ -1,6 +1,6 @@
-# BIRNAT: Bidirectional Recurrent Neural Networks with Adversarial Training for Video Snapshot Compressive Imaging
+# BIRNAT: Bidirectional Recurrent Neural Networks with Adversarial Training for Video Snapshot Compressive Imaging (用于视频单曝光压缩成像的配合对抗训练的双向循环神经网络)
 ## Abstract 
-We consider the problem of video snapshot compressive imaging (SCI), where multiple high-speed frames are coded by different masks and then summed to a single measurement. This measurement and the modulation masks are fed into our Recurrent Neural Network (RNN) to reconstruct the desired high-speed frames. Our end-to-end sampling and reconstruction system is dubbed BIdirectional Recurrent Neural networks with Adversarial Training (BIRNAT). To our best knowledge, this is the first time that recurrent networks are employed to SCI problem. Our proposed BIRNAT outperforms other deep learning based algorithms and the state-of-the-art optimization based algorithm, DeSCI, through exploiting the underlying correlation of sequential video frames. BIRNAT employs a deep convolutional neural network with Resblock and feature map self-attention to reconstruct the first frame, based on which bidirectional RNN is utilized to reconstruct the following frames in a sequential manner. To improve the quality of the reconstructed video, BIRNAT is further equipped with the adversarial training besides the mean square error loss. Extensive results on both simulation and real data (from two SCI cameras) demonstrate the superior performance of our BIRNAT system. The codes are available at https://github.com/BoChenGroup/BIRNAT.
+本文研究的是视频单曝光压缩(Video Snapshot Compressive Imaging, Video SCI)成像中遇到的问题，Video SCI通过将多个高速帧经由不同掩模调制后被联合曝光在单一测量帧中。测量帧和调制用掩模被输入到文中的循环神经网络以获得高速帧的重建结果。本文的端到端采样和图像重建系统被称为配合对抗训练的双向循环神经网络(Bidirectional Recurrent Neural networks with Adversarial Training, BIRNAT)。据我们所知，这是首次将循环神经网络引入视频SCI。本文提出的BIRNAT通过利用视频帧间序列的潜在相关性，得到了表现优于当下最先进的基于深度学习和最优化的DeSCI算法结果。BIRNAT使用带有残差模块和特征图自注意力机制的深度卷积神经网络来重建第一帧，随后使用双向循环神经网络以顺序方式重建后续帧图像。为了进一步提升重建视频质量，除了使用常规的均方误差损失函数外，本文还为BIRNAT进行了对抗训练。大量的实验结果证明了本文BIRNAT系统的对于模拟和真实数据集的优异性能。代码于https://github.com/BoChenGroup/BIRNAT处提供。
 
 ## 6个仿真数据集上的测试结果
 |Dataset|Kobe |Traffic|Runner| Drop  | Aerial | Vehicle|Average|
@@ -25,13 +25,13 @@ CUDA_VISIBLE_DEVICES=0,1,2,3 python -m torch.distributed.launch --nproc_per_node
 
 单GPU训练可通过以下方式进行启动，默认为0号显卡，也可通过设置CUDA_VISIBLE_DEVICES编号选择显卡：
 ```
-python tootls/train.py configs/BIRNAT/birnat.py
+python tools/train.py configs/BIRNAT/birnat.py
 ```
 
 ## 仿真数据集测试
 指定权重参数路径，执行以下命令可在六个基准仿真数据集上进行测试。
 ```
-python tootls/test_deeplearning.py configs/BIRNAT/birnat.py --weights=checkpoints/birnat/birnat.pth
+python tools/test_deeplearning.py configs/BIRNAT/birnat.py --weights=checkpoints/birnat/birnat.pth
 ```
 * --weights 权重参数路径  
 注意：权重参数路径可以通过 --weight 进行指定，也可以修改配置文件中checkpoints值，相应权重可以在 [dropbox](https://www.dropbox.com/sh/96nf7jzabhqj4mh/AAB09QXrNGi_kujDDnWn6G32a?dl=0) 进行下载。

@@ -30,18 +30,25 @@ CUDA_VISIBLE_DEVICES=0,1,2,3 python -m torch.distributed.launch --nproc_per_node
 
 单GPU训练可通过以下方式进行启动，默认为0号显卡，也可通过设置CUDA_VISIBLE_DEVICES编号选择显卡：
 ```
-python tootls/train.py configs/MetaSCI/metasci.py
+python tools/train.py configs/MetaSCI/metasci.py
 ```
 
 ## 仿真数据集测试
 指定权重参数路径，执行以下命令可在六个基准仿真数据集上进行测试。
 ```
-python tootls/test_deeplearning.py configs/MetaSCI/metasci.py --weights=checkpoints/metasci/metasci.pth
+python tools/test_deeplearning.py configs/MetaSCI/metasci.py --weights=checkpoints/metasci/metasci.pth
 ```
 * --weights 权重参数路径  
 注意：权重参数路径可以通过 --weight 进行指定，也可以修改配置文件中checkpoints值，相应权重可以在 [dropbox](https://www.dropbox.com/sh/96nf7jzabhqj4mh/AAB09QXrNGi_kujDDnWn6G32a?dl=0) 进行下载。
 ## 真实数据集测试
-TODO
+执行以下命令可在真实数据集上进行测试。
+```
+python tools/real_data/test_deeplearning.py configs/MetaSCI/metasci_real_cr10.py --weights=checkpoints/metasci/metasci_real_cr10.pth
+
+```
+注意：
+* 权重参数路径可以通过 --weight 进行指定，也可以修改配置文件中checkpoints值，相应权重可以在 [dropbox](https://www.dropbox.com/sh/96nf7jzabhqj4mh/AAB09QXrNGi_kujDDnWn6G32a?dl=0) 进行下载。
+* 这里仅仅展示了压缩率为10的真实数据，对于其他压缩率我们需要首先修改gapnet_metasci_cr10.py文件中cr的属性值，并对模型进行重新训练。
 
 ## Citation
 ```

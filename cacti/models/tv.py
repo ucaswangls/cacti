@@ -18,7 +18,10 @@ class TV(nn.Module):
         x = x.cpu().numpy()
         
         x = einops.rearrange(x,"b h w-> h w b")
-        x = denoise_tv_chambolle(x, self.tv_weight, n_iter_max=self.tv_iter_max,channel_axis=2)
+        multichannel=False
+        if b*c>1:
+            multichannel=True
+        x = denoise_tv_chambolle(x, self.tv_weight, n_iter_max=self.tv_iter_max,multichannel=multichannel)
         x = einops.rearrange(x,"h w b-> b h w")
         
         x = torch.from_numpy(x).to(device)
