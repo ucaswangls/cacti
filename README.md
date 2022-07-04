@@ -17,8 +17,8 @@ CACTI Library was born in SCI Lab, Westlake University. We sincerely hope our li
 <div align="center">
   <img src="docs/gif/kobe.gif" width="1000"/>  
   <img src="docs/gif/crash.gif" width="1000"/>  
-  
-    Fig2. Reconstructed Gray Value Data via Different Algorithms
+
+  Fig2. Reconstructed Gray Value Data via Different Algorithms
 </div>
 
 <div align="center">
@@ -28,7 +28,7 @@ CACTI Library was born in SCI Lab, Westlake University. We sincerely hope our li
   Fig3. Reconstructed Colored Data via Different Algorithms
 </div>
 
-# Supported Algorithm 
+# Supported Algorithms
 <div align="center">
   <img src="docs/images/psnr_time.png" width="600"/>
 
