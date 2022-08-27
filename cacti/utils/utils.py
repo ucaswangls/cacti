@@ -60,7 +60,7 @@ def save_single_image(images,image_dir,batch,name="",demosaic=False):
     for i in range(frames):
         begin_frame = batch*frames
         if len(images.shape)==4:
-            single_image = images[:,i].transpose(1,2,0)
+            single_image = images[:,i].transpose(1,2,0)[:,:,::-1]
         else:
             single_image = images[i]
         if demosaic:

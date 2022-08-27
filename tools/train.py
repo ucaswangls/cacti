@@ -169,7 +169,8 @@ def main():
             optimizer.step()
             if rank==0 and (iteration % cfg.log_config.interval) == 0:
                 lr = optimizer.state_dict()["param_groups"][0]["lr"]
-                logger.info("epoch: [{}][{}/{}], lr: {:.6f}, loss: {:.5f}.".format(epoch,iteration,iter_num,lr,loss.item()))
+                iter_len = len(str(iter_num))
+                logger.info("epoch: [{}][{:>{}}/{}], lr: {:.6f}, loss: {:.5f}.".format(epoch,iteration,iter_len,iter_num,lr,loss.item()))
                 writer.add_scalar("loss",loss.item(),epoch*len(train_data_loader) + iteration)
             if rank==0 and (iteration % cfg.save_image_config.interval) == 0:
                 sing_out = model_out[-1][0].detach().cpu().numpy()

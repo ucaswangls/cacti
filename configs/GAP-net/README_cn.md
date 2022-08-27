@@ -39,7 +39,7 @@ python tools/test_deeplearning.py configs/GAP-net/gapnet.py --weights=checkpoint
 ## 真实数据集测试
 执行以下命令可在真实数据集上进行测试。
 ```
-python tools/real_data/test_deeplearning.py configs/GAP-net/gapnet_real_cr10.py --weights=checkpoints/gapnet/gapnet_real_cr10.pth
+python tools/real_data/test_deeplearning.py configs/GAP-CCoT/gapnet_real_cr10.py --weights=checkpoints/gapnet/gapnet_real_cr10.pth
 
 ```
 注意：

@@ -110,7 +110,7 @@ class RandomCrop:
             img_h,img_w,_ = img_dim
         else:
             img_h,img_w = img_dim
-        assert self.crop_h>self.img_h or self.crop_w>self.img_w, \
+        assert self.crop_h<self.img_h or self.crop_w<self.img_w, \
             "Crop height or width greater than image size! "
         h_b = np.random.randint(0,img_h-self.crop_h+1)
         w_b = np.random.randint(0,img_w-self.crop_w+1)

@@ -11,6 +11,7 @@ from cacti.utils.config import Config
 from cacti.models.builder import build_model
 from cacti.datasets.builder import build_dataset 
 from cacti.utils.logger import Logger
+from torch.cuda.amp import autocast
 import numpy as np 
 import argparse 
 import einops 
@@ -84,20 +85,24 @@ def main():
         batch_size = meas.shape[0]
         for ii in range(batch_size):
             single_meas = meas[ii].unsqueeze(0).unsqueeze(0)
+            
             with torch.no_grad():
                 torch.cuda.synchronize()
                 start = time.time()
-                outputs = model(single_meas, Phi, Phi_s)
+                if "amp" in cfg.keys() and cfg.amp:
+                    with autocast():
+                        outputs = model(single_meas, Phi, Phi_s)
+                else:
+                    outputs = model(single_meas, Phi, Phi_s)
                 torch.cuda.synchronize()
                 end = time.time()
-                torch.cuda.synchronize()
                 run_time = end - start
                 if ii>0:
                     sum_time += run_time
                     time_count += 1
             if not isinstance(outputs,list):
                 outputs = [outputs]
-            output = outputs[-1][0].cpu().numpy()
+            output = outputs[-1][0].cpu().numpy().astype(np.float32)
             batch_output.append(output)
         
         out_list.append(np.array(batch_output))

@@ -38,6 +38,7 @@ CACTI Library was born in SCI Lab, Westlake University. We sincerely hope our li
 ## Iterative Optimization Method 
 * [ADMM-TV / GAP-TV (ICIP2016)](configs/TV/README.md)  
 * [DeSCI (TPAMI2019)](configs/DeSCI/README.md)
+
 ## End to End Algorithm 
 * [Unet (APL Photonics 2020)](configs/Unet/README.md) 
 * [BIRNAT (ECCV 2020)](configs/BIRNAT/README.md) 
@@ -47,6 +48,8 @@ CACTI Library was born in SCI Lab, Westlake University. We sincerely hope our li
 ## Deep Unfolding Algorithm
 * [GAP-net](configs/GAP-net/README.md) 
 * [DUN-3DUnet(ICCV2021)](configs/DUN-3DUnet/README.md) 
+* [GAP-CCoT (Photonics Research 2022)](configs/GAP-CCoT/README_cn.md) 
+* [ELP-Unfolding (ECCV 2022)](configs/ELP-Unfolding/README_cn.md) 
 
 ## Plug and Play Algorithm
 * [PnP-FastDVDnet (TPAMI 2021)](configs/PnP-FastDVD/README.md) 
@@ -62,7 +65,7 @@ Please see the [Installation Manual](docs/install.md) for CACTI Installation
 * [CACTI Code Library Documentation](docs/introduction.md)
 * [Model Training Dataset](docs/add_datasets.md)
 * [Newly Added Self-Defined Model](docs/add_models.md)
-* [Statistics of Model Params and FLOPs](docs/params_floats.md)
+* [Statistics of Model Params and FLOPs](docs/params_flops.md)
 * [Images to Video and Images to GIF Transfer](docs/video_gif.md)
 * [pytorch to onnx and onnx to tensorrt Tansform](docs/onnx_tensorrt.md)
 

@@ -50,9 +50,10 @@ real_data = dict(
 ```
 ## Citation 
 ```
-@article{2021Plug,
-  title={Plug-and-Play Algorithms for Video Snapshot Compressive Imaging},
-  author={ Yuan, X.  and  Liu, Y.  and  Suo, J.  and  Durand, F.  and  Dai, Q. },
-  year={2021},
+@article{yuan2021plug,
+  title={Plug-and-Play Algorithms for Video Snapshot Compressive Imaging.},
+  author={Yuan, X and Liu, Y and Suo, J and Durand, F and Dai, Q},
+  journal={IEEE Transactions on Pattern Analysis and Machine Intelligence},
+  year={2021}
 }
 ```

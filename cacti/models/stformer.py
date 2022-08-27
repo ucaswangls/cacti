@@ -12,7 +12,6 @@ from cacti.utils.utils import A, At
 from .builder import MODELS
 
 class feed_forward(nn.Module):
-
     def __init__(self, dim):
         super(feed_forward, self).__init__()
         self.part1 = nn.Sequential(
@@ -33,26 +32,6 @@ class feed_forward(nn.Module):
         y2 = x2 + self.part2(x2)
         y = torch.cat([y1, y2], dim=1)
         return y
-class Mlp(nn.Module):
-    """ Multilayer perceptron."""
-
-    def __init__(self, in_features, hidden_features=None, out_features=None, act_layer=nn.GELU, drop=0.):
-        super().__init__()
-        out_features = out_features or in_features
-        hidden_features = hidden_features or in_features
-        self.fc1 = nn.Linear(in_features, hidden_features)
-        self.act = act_layer()
-        self.fc2 = nn.Linear(hidden_features, out_features)
-        self.drop = nn.Dropout(drop)
-
-    def forward(self, x):
-        x = self.fc1(x)
-        x = self.act(x)
-        x = self.drop(x)
-        x = self.fc2(x)
-        x = self.drop(x)
-        return x
-
 
 def window_partition(x, window_size):
     """
@@ -271,10 +250,8 @@ class SwinTransformerBlock3D(nn.Module):
 
         self.drop_path = DropPath(drop_path) if drop_path > 0. else nn.Identity()
         self.norm2 = norm_layer(dim)
-        mlp_hidden_dim = int(dim * mlp_ratio)
-        # self.mlp = Mlp(in_features=dim, hidden_features=mlp_hidden_dim, act_layer=act_layer, drop=drop)
         self.ff = feed_forward(dim//2)
-        #change wangls
+
         self.time_attn = TimesAttention3D(
             dim,num_heads,
             qkv_bias=qkv_bias,
@@ -296,14 +273,10 @@ class SwinTransformerBlock3D(nn.Module):
         pad_r = (window_size[2] - W % window_size[2]) % window_size[2]
         x = F.pad(x, (0, 0, pad_l, pad_r, pad_t, pad_b, pad_d0, pad_d1))
         _, Dp, Hp, Wp, _ = x.shape
-        #change wangls 
-        avg_x = rearrange(x,"b d h w c->b c d h w")
-        # avg_x = F.avg_pool3d(avg_x,(1,window_size[1],window_size[2]))
-        x_times = rearrange(avg_x,"b c d h w->(b h w) d c")
+        
+        x_times = rearrange(x,"b d h w c->(b h w) d c")
         x_times = self.time_attn(x_times)
         x_times = rearrange(x_times,"(b h w) d c -> b d h w c",h=Hp ,w=Wp)
-        # x_times = rearrange(x_times,"(b h w) d c -> b d h w c",h=Hp // window_size[1],w=Wp // window_size[2])
-        # x_times = einops.repeat(x_times,"b d h w c->b d (h h2) (w w2) c",h2=window_size[1],w2=window_size[2])
 
         # cyclic shift
         if any(i > 0 for i in shift_size):
@@ -324,14 +297,7 @@ class SwinTransformerBlock3D(nn.Module):
             x = torch.roll(shifted_x, shifts=(shift_size[0], shift_size[1], shift_size[2]), dims=(1, 2, 3))
         else:
             x = shifted_x
-        #change wangls 
-        # x = torch.cat([x_times,x],dim=-1)
-        # x = rearrange(x,"b d h w c->b c d h w")
-        # x = self.conv_cat(x)
-        # x = rearrange(x,"b c d h w ->b d h w c")
         x = x_times+x
-
-
         if pad_d1 >0 or pad_r > 0 or pad_b > 0:
             x = x[:, :D, :H, :W, :].contiguous()
         return x
@@ -365,7 +331,6 @@ class SwinTransformerBlock3D(nn.Module):
 
         return x
 
-
 # cache each stage results
 @lru_cache()
 def compute_mask(D, H, W, window_size, shift_size, device):
@@ -384,7 +349,6 @@ def compute_mask(D, H, W, window_size, shift_size, device):
 
 
 class TSFormerLayer(nn.Module):
-
     def __init__(self,
                  dim,
                  depth,
@@ -406,7 +370,6 @@ class TSFormerLayer(nn.Module):
         self.depth = depth
         self.use_checkpoint = use_checkpoint
 
-        # build blocks
         self.blocks = nn.ModuleList([
             SwinTransformerBlock3D(
                 dim=dim,
@@ -492,7 +455,6 @@ class STFormer(nn.Module):
                     qk_scale=None,
                     frames=frames
             )
-              
             self.layers.append(tsformer_block)
 
     def bayer_init(self,y,Phi,Phi_s):
@@ -509,8 +471,8 @@ class STFormer(nn.Module):
         y_bayer = einops.rearrange(y_bayer,"b f h w ba->(b ba) f h w")
         Phi_bayer = einops.rearrange(Phi_bayer,"b f h w ba->(b ba) f h w")
         Phi_s_bayer = einops.rearrange(Phi_s_bayer,"b f h w ba->(b ba) f h w")
+
         x = At(y_bayer,Phi_bayer)
-        ### 1-3
         yb = A(x,Phi_bayer)
         x = x + At(torch.div(y_bayer-yb,Phi_s_bayer),Phi_bayer)
         x = einops.rearrange(x,"(b ba) f h w->b f h w ba",b=b)
@@ -528,7 +490,6 @@ class STFormer(nn.Module):
             x = self.bayer_init(y,Phi,Phi_s)
         else:
             x = At(y,Phi)
-            ### 1-3
             yb = A(x,Phi)
             x = x + At(torch.div(y-yb,Phi_s),Phi)
             x = x.unsqueeze(1)
@@ -538,7 +499,6 @@ class STFormer(nn.Module):
         for layer in self.layers:
             out = layer(out)
         out = self.conv2(out)
-
 
         if self.color_channels!=3:
             out = out.squeeze(1)

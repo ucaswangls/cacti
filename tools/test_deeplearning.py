@@ -12,6 +12,7 @@ from cacti.utils.config import Config
 from cacti.models.builder import build_model
 from cacti.datasets.builder import build_dataset 
 from cacti.utils.logger import Logger
+from torch.cuda.amp import autocast
 import numpy as np 
 import argparse 
 import time
@@ -28,7 +29,6 @@ def parse_args():
         args.device="cpu"
     return args
 
-
 def main():
     args = parse_args()
     cfg = Config.fromfile(args.config)
@@ -37,10 +37,12 @@ def main():
     config_name = osp.splitext(osp.basename(args.config))[0]
     if args.work_dir is None:
         args.work_dir = osp.join('./work_dirs',config_name)
-    mask,mask_s = generate_masks(cfg.test_data.mask_path)
+    mask,mask_s = generate_masks(cfg.test_data.mask_path,cfg.test_data.mask_shape)
     cr = mask.shape[0]
     if args.weights is None:
         args.weights = cfg.checkpoints
+
+    test_dir = osp.join(args.work_dir,"test_images")
 
     log_dir = osp.join(args.work_dir,"test_log")
     if not osp.exists(log_dir):
@@ -68,14 +70,25 @@ def main():
 
     Phi = einops.repeat(mask,'cr h w->b cr h w',b=1)
     Phi_s = einops.repeat(mask_s,'h w->b 1 h w',b=1)
-
     Phi = torch.from_numpy(Phi).to(args.device)
     Phi_s = torch.from_numpy(Phi_s).to(args.device)
+
+    if "partition" in cfg.test_data.keys():
+        partition = cfg.test_data.partition
+        _,_,Phi_h,Phi_w = Phi.shape
+        part_h = partition.height
+        part_w = partition.width
+        assert (Phi_h%part_h==0) and (Phi_w%part_w==0), "Image cannot be chunked!"
+        h_num = Phi_h//part_h
+        w_num = Phi_w//part_w
+        A_Phi = einops.rearrange(Phi,"b cr (h_num h) (w_num w)->(b h_num w_num) cr h w",h=part_h,w=part_w)
+        A_Phi_s = einops.rearrange(Phi_s,"b cr (h_num h) (w_num w)->(b h_num w_num) cr h w",h=part_h,w=part_w)
+        
     psnr_dict,ssim_dict = {},{}
     psnr_list,ssim_list = [],[]
-    out_list,gt_list = [],[]
     sum_time=0.0
     time_count = 0
+    
     for data_iter,data in enumerate(data_loader):
         psnr,ssim = 0,0
         batch_output = []
@@ -83,13 +96,27 @@ def main():
         gt = gt[0].numpy()
         meas = meas[0].float().to(device)
         batch_size = meas.shape[0]
-
+        name = test_data.data_name_list[data_iter]
+        if "_" in name:
+            _name,_ = name.split("_")
+        else:
+            _name,_ = name.split(".")
+        out_list = []
+        gt_list = []
         for ii in range(batch_size):
+            single_gt = gt[ii]
             single_meas = meas[ii].unsqueeze(0).unsqueeze(0)
+            if "partition" in cfg.test_data.keys():
+                Phi = A_Phi[ii%(h_num*w_num)].unsqueeze(0)
+                Phi_s = A_Phi_s[ii%(h_num*w_num)].unsqueeze(0)
             with torch.no_grad():
                 torch.cuda.synchronize()
                 start = time.time()
-                outputs = model(single_meas, Phi, Phi_s)
+                if "amp" in cfg.keys() and cfg.amp:
+                    with autocast():
+                        outputs = model(single_meas, Phi, Phi_s)
+                else:
+                    outputs = model(single_meas, Phi, Phi_s)
                 torch.cuda.synchronize()
                 end = time.time()
                 run_time = end - start
@@ -98,46 +125,58 @@ def main():
                     time_count += 1
             if not isinstance(outputs,list):
                 outputs = [outputs]
-            output = outputs[-1][0].cpu().numpy()
-            batch_output.append(output)
+            output = outputs[-1][0].cpu().numpy().astype(np.float32)
+            
+            if "partition" in cfg.test_data.keys():
+                out_list.append(output)
+                gt_list.append(single_gt)
+                if (ii+1)%(h_num*w_num)==0:
+                    output = np.array(out_list)
+                    single_gt = np.array(gt_list)
+                    output = einops.rearrange(output,"(h_num w_num) c cr h w->c cr (h_num h) (w_num w)",h_num=h_num,w_num=w_num)
+                    single_gt = einops.rearrange(single_gt,"(h_num w_num) cr h w->cr (h_num h) (w_num w)",h_num=h_num,w_num=w_num)
+                    batch_output.append(output)
+                    out_list = []
+                    gt_list = []
+                else:
+                    continue
+            else:
+                batch_output.append(output)
             for jj in range(cr):
                 if output.shape[0]==3:
                     per_frame_out = output[:,jj]
-                    per_frame_out = np.sum(per_frame_out*test_data.rgb2raw,axis=0)
+                    rgb2raw = test_data.rgb2raw
+                    per_frame_out = np.sum(per_frame_out*rgb2raw,axis=0)
                 else:
                     per_frame_out = output[jj]
-                per_frame_gt = gt[ii,jj, :, :]
+                per_frame_gt = single_gt[jj]
                 psnr += compare_psnr(per_frame_gt*255,per_frame_out*255)
                 ssim += compare_ssim(per_frame_gt*255,per_frame_out*255)
-        psnr = psnr / (batch_size * cr)
-        ssim = ssim / (batch_size * cr)
+        meas_num = len(batch_output)
+        psnr = psnr / (meas_num* cr)
+        ssim = ssim / (meas_num* cr)
         logger.info("{}, Mean PSNR: {:.4f} Mean SSIM: {:.4f}.".format(
-                    test_data.data_name_list[data_iter],psnr,ssim))
+                    _name,psnr,ssim))
         psnr_list.append(psnr)
         ssim_list.append(ssim)
-        out_list.append(np.array(batch_output))
-        gt_list.append(gt)
 
-    logger.info('Average Run Time:\n' 
-            + dash_line + 
-            "{:.4f} s.".format(sum_time/time_count) + '\n' +
-            dash_line)
-    test_dir = osp.join(args.work_dir,"test_images")
-    if not osp.exists(test_dir):
-        os.makedirs(test_dir)
+        psnr_dict[_name] = psnr
+        ssim_dict[_name] = ssim
 
-    for i,name in enumerate(test_data.data_name_list):
-        _name,_ = name.split("_")
-        psnr_dict[_name] = psnr_list[i]
-        ssim_dict[_name] = ssim_list[i]
-        out = out_list[i]
-        gt = gt_list[i]
+        #save image
+        out = np.array(batch_output)
         for j in range(out.shape[0]):
             image_dir = osp.join(test_dir,_name)
             if not osp.exists(image_dir):
                 os.makedirs(image_dir)
             save_single_image(out[j],image_dir,j,name=config_name)
-
+    if time_count==0:
+        time_count=1
+    logger.info('Average Run Time:\n' 
+            + dash_line + 
+            "{:.4f} s.".format(sum_time/time_count) + '\n' +
+            dash_line)
+    
     psnr_dict["psnr_mean"] = np.mean(psnr_list)
     ssim_dict["ssim_mean"] = np.mean(ssim_list)
     

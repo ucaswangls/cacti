@@ -45,9 +45,11 @@ CACTI代码库诞生于西湖大学袁鑫 SCI lab 实验室，我们希望通过
 * [MetaSCI (CVPR2021)](configs/MetaSCI/README_cn.md) 
 
 ## 深度展开算法
-* [GAP-net](configs/GAP-net/README_cn.md) 
-* [DUN-3DUnet(ICCV2021)](configs/DUN-3DUnet/README_cn.md) 
-* [TwoStage](configs/TwoStage/README_cn.md) 
+* [GAP-net] (configs/GAP-net/README_cn.md) 
+* [DUN-3DUnet (ICCV2021)](configs/DUN-3DUnet/README_cn.md) 
+* [GAP-CCoT (Photonics Research 2022)](configs/GAP-CCoT/README_cn.md) 
+* [ELP-Unfolding (ECCV 2022)](configs/ELP-Unfolding/README_cn.md) 
+
 ## 即插即用算法
 * [PnP-FastDVDnet (TPAMI 2021)](configs/PnP-FastDVD/README_cn.md) 
 * [PnP-FFDNet (CVPR 2020 oral)](configs/PnP-FFDNet/README_cn.md) 
@@ -59,7 +61,7 @@ CACTI代码库诞生于西湖大学袁鑫 SCI lab 实验室，我们希望通过
 * [CACTI代码库说明文档](docs/introduction_cn.md)
 * [模型训练数据集](docs/add_datasets_cn.md)
 * [新增自定义模型](docs/add_models_cn.md)
-* [模型参数与浮点数的统计](docs/params_floats_cn.md)
+* [模型参数与浮点运算次数的统计](docs/params_flops_cn.md)
 * [图片到视频与gif的转换](docs/video_gif_cn.md)
 * [pytorch到onnx与tensorrt模型的转换](docs/onnx_tensorrt_cn.md)
 

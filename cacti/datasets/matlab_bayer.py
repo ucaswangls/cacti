@@ -2,6 +2,7 @@ import os
 import os.path as osp 
 from torch.utils.data import Dataset
 import h5py 
+import einops
 import numpy as np 
 import scipy.io as scio 
 from .builder import DATASETS
@@ -11,10 +12,19 @@ class MatlabBayerData(Dataset):
     def __init__(self,data_root,*args,**kwargs):
         self.data_root = data_root
         self.data_name_list = os.listdir(data_root)
+        
         if kwargs["rot_flip_flag"]:
             self.rot_flip_flag=True
         else:
             self.rot_flip_flag=False
+        if "transpose" in kwargs.keys():
+            self.transpose=True
+        else:
+            self.transpose=False
+        if "partition" in kwargs.keys():
+            self.partition = kwargs["partition"]
+        else:
+            self.partition = None
         self.mask = kwargs["mask"]
         self.cr,self.mask_h,self.mask_w = self.mask.shape
         r = np.array([[1, 0], [0, 0]])
@@ -36,10 +46,13 @@ class MatlabBayerData(Dataset):
             data = h5py.File(osp.join(self.data_root,self.data_name_list[index]))
             orig = data["orig"]
             pic = orig.value
-
+        if self.transpose:
+            pic = einops.rearrange(pic,"b c w h->b c h w")
         pic_gt = np.zeros([pic.shape[0] // self.cr,self.cr,self.mask_h,self.mask_w])
         pic_rgb_gt = np.zeros([pic.shape[0] // self.cr,3,self.cr,self.mask_h,self.mask_w])
         for jj in range(pic.shape[0]):
+            if jj// self.cr==pic.shape[0] // self.cr:
+                break
             if jj % self.cr == 0:
                 meas_t = np.zeros([self.mask_h,self.mask_w])
                 n = 0
@@ -67,6 +80,15 @@ class MatlabBayerData(Dataset):
             elif (jj + 1) % self.cr == 0 and jj != self.cr-1:
                 meas_t = np.expand_dims(meas_t, 0)
                 meas = np.concatenate((meas, meas_t), axis=0)
+        if self.partition is not None:
+            img_h,img_w= self.mask_h,self.mask_w
+            part_h = self.partition.height
+            part_w = self.partition.width
+            assert (img_h%part_h==0) and (img_w%part_w==0),"Image cannot be chunked!"
+            h_num = img_h//part_h
+            w_num = img_w//part_w
+            meas = einops.rearrange(meas,"b (h_num h) (w_num w)->(b h_num w_num) h w",h_num=h_num,w_num=w_num)
+            pic_gt = einops.rearrange(pic_gt,"b cr (h_num h) (w_num w)->(b h_num w_num) cr h w",h_num=h_num,w_num=w_num)
         return meas,pic_gt
         
     def __len__(self,):
