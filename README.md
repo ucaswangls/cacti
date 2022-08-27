@@ -15,15 +15,15 @@ CACTI (Coded Aperture Compressive Temporal Imaging) is an classical Video SCI sy
 CACTI Library was born in SCI Lab, Westlake University. We sincerely hope our library users can make their own contributions in various Video SCI algorithms, and by implementing and referring this library, one can broaden the library users and share deep understanding about Video SCI.
 
 <div align="center">
-  <img src="docs/gif/kobe.gif" width="1000"/>  
-  <img src="docs/gif/crash.gif" width="1000"/>  
+  <img src="docs/gif/kobe.gif" />  
+  <img src="docs/gif/crash.gif" />  
 
   Fig2. Reconstructed Gray Value Data via Different Algorithms
 </div>
 
 <div align="center">
-  <img src="docs/gif/Bosphorus.gif" width="1000"/> 
-  <img src="docs/gif/ShakeNDry.gif" width="1000"/> 
+  <img src="docs/gif/Bosphorus.gif"/> 
+  <img src="docs/gif/ShakeNDry.gif"/> 
 
   Fig3. Reconstructed Colored Data via Different Algorithms
 </div>
