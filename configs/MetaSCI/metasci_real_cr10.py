@@ -43,5 +43,4 @@ eval=dict(
     interval=1
 )
 
-
 checkpoints="checkpoints/metasci/metasci_real_cr10.pth"

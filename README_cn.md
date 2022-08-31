@@ -45,7 +45,7 @@ CACTI代码库诞生于西湖大学袁鑫 SCI lab 实验室，我们希望通过
 * [MetaSCI (CVPR2021)](configs/MetaSCI/README_cn.md) 
 
 ## 深度展开算法
-* [GAP-net] (configs/GAP-net/README_cn.md) 
+* [GAP-net](configs/GAP-net/README_cn.md) 
 * [DUN-3DUnet (ICCV2021)](configs/DUN-3DUnet/README_cn.md) 
 * [GAP-CCoT (Photonics Research 2022)](configs/GAP-CCoT/README_cn.md) 
 * [ELP-Unfolding (ECCV 2022)](configs/ELP-Unfolding/README_cn.md) 

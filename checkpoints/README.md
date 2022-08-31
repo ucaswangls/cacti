@@ -1,0 +1,2 @@
+# Model weights folder
+All model parameters can be download at [Dropbox](https://www.dropbox.com/sh/3cj7nv5l0hfqup9/AAAMbLQXmoVki98cqwuv754ia?dl=0) and [BaiduNetdisk](https://pan.baidu.com/s/1wWqlXQCshwDAyaIkUkinHg) (8l92)
