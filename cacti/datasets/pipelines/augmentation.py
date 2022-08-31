@@ -100,23 +100,32 @@ class RandomResize:
 
 @PIPELINES.register_module
 class RandomCrop:
-    def __init__(self,crop_h,crop_w):
+    def __init__(self,crop_h,crop_w,random_size=False,crop_ratio=0.5):
         self.crop_h = crop_h
         self.crop_w = crop_w
-
+        self.random_size=random_size
+        self.crop_ratio = crop_ratio
     def __call__(self, imgs):
+        assert isinstance(imgs,list), "imgs must be list"
+        crop = np.random.random() < self.crop_ratio
+        if not crop:
+            return imgs
         img_dim = imgs[0].shape
         if len(img_dim)==3:
             img_h,img_w,_ = img_dim
         else:
             img_h,img_w = img_dim
-        assert self.crop_h<self.img_h or self.crop_w<self.img_w, \
+        assert self.crop_h<img_h or self.crop_w<img_w, \
             "Crop height or width greater than image size! "
-        h_b = np.random.randint(0,img_h-self.crop_h+1)
-        w_b = np.random.randint(0,img_w-self.crop_w+1)
+        crop_h, crop_w = self.crop_h, self.crop_w
+        if self.random_size:
+            crop_h = np.random.randint(self.crop_h//2,img_h)
+            crop_w = np.random.randint(self.crop_w//2,img_w)
+        h_b = np.random.randint(0,img_h-crop_h+1)
+        w_b = np.random.randint(0,img_w-crop_w+1)
         img_list = []
         for img in imgs:
-            crop_img = img[h_b:h_b+self.crop_h,w_b:w_b+self.crop_w]
+            crop_img = img[h_b:h_b+crop_h,w_b:w_b+crop_w]
             img_list.append(crop_img)
         return img_list
-        
+     
