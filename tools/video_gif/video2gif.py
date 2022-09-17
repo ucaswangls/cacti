@@ -5,7 +5,7 @@ from moviepy.editor import VideoFileClip
 
 def parse_args():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--video_path",type=str,default="work_dirs/video/concat/kobe.avi")
+    parser.add_argument("--video_path",type=str,default="work_dirs/video/concat/ShakeNDry.avi")
     parser.add_argument("--dst_dir",type=str,default="work_dirs/gif/concat")
     parser.add_argument("--gif_name",type=str,default=None)
     parser.add_argument("--fps",type=int,default=8)
@@ -15,7 +15,7 @@ def parse_args():
 if __name__=="__main__":
     args = parse_args()
     video_path = args.video_path
-    dst_dir = args.video_path
+    dst_dir = args.dst_dir
     if not osp.exists(dst_dir):
         os.makedirs(dst_dir)
     gif_name = args.gif_name

@@ -12,5 +12,8 @@ loss = dict(type='MSELoss')
 
 runner = dict(max_epochs=120)
 
+find_unused_parameters=False
+
 checkpoints=None
+
 resume=None

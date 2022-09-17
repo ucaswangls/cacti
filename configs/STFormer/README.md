@@ -17,7 +17,7 @@ Extensive results on both simulated and real data demonstrate the state-of-the-a
 |  1.6774  | 0.5411   |  0.4500 |  0.9268 |  0.4871|
 
 ## Training STFormer 
-Support multi GPUs and single GPU training efficiently, first configure the training dataset based on [model training dataset](cacti/docs/add_datasets.md).
+Support multi GPUs and single GPU training efficiently, first configure the training dataset based on [model training dataset](../../docs/add_datasets.md).
 
 Launch multi GPU training by the statement below:
 

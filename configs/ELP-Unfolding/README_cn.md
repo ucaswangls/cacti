@@ -33,7 +33,7 @@ https://github.com/integritynoble/ELP-Unfolding/tree/master
 |  0.9754   | 0.3974  |  0.3364 |  0.6250 |  0.2790|
 
 ## 训练
-支持高效多GPU训练与单GPU训练, 首先根据 [模型训练数据集](cacti/docs/add_datasets_cn.md) 配置训练数据集。
+支持高效多GPU训练与单GPU训练, 首先根据 [模型训练数据集](../../docs/add_datasets_cn.md) 配置训练数据集。
 
 多GPU训练可通过以下方式进行启动：
 ```

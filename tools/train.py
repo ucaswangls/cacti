@@ -133,11 +133,14 @@ def main():
             start_epoch = resume_dict["epoch"]
             model_state_dict = resume_dict["model_state_dict"]
             load_checkpoints(model,model_state_dict)
-
             optim_state_dict = resume_dict["optim_state_dict"]
             optimizer.load_state_dict(optim_state_dict)
+
     if args.distributed:
-        model = DDP(model,device_ids=[local_rank],output_device=local_rank,find_unused_parameters=True)
+        model = DDP(model,
+                    device_ids=[local_rank],
+                    output_device=local_rank,
+                    find_unused_parameters=cfg.find_unused_parameters)
     
     iter_num = len(train_data_loader) 
     for epoch in range(start_epoch,cfg.runner.max_epochs):

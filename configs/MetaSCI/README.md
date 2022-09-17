@@ -16,7 +16,7 @@ To capture high-speed videos using a two-dimensional detector, video snapshot co
 |  0.0160  | 0.0067  |  0.0056 |  0.0089 |  0.0052|
 
 ## Training MetaSCI 
-Support multi GPUs and single GPU training efficiently, first configure the training dataset based on [model training dataset](cacti/docs/add_datasets.md).
+Support multi GPUs and single GPU training efficiently, first configure the training dataset based on [model training dataset](../../docs/add_datasets.md).
 
 Launch multi GPU training by the statement below:
 

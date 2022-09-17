@@ -13,7 +13,7 @@
 * test_iterative.py (Testing iterative algorithms or plug and play algorithms on grayscale simulation dataset)
 * test_color_iterative.py (Testing iterative algorithms or plug and play algorithms on colored simulation dataset)
 * real_data (Testing real data)
-* params_floats.py (Statistics of model parameters and FLOPs)
+* params_flops.py (Statistics of model parameters and FLOPs)
 * video_gif (images to video and images to gif transfer)
 * onnx_tensorrt (onnx, tensorrt model transfer and testing)
 

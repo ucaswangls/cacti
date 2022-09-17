@@ -18,7 +18,7 @@ MetaSCI is composed of a shared backbone for different masks, and light-weight m
 |  0.0160  | 0.0067  |  0.0056 |  0.0089 |  0.0052|
 
 ## 训练
-支持高效多GPU训练与单GPU训练, 首先根据 [模型训练数据集](cacti/docs/add_datasets_cn.md) 配置训练数据集。
+支持高效多GPU训练与单GPU训练, 首先根据 [模型训练数据集](../../docs/add_datasets_cn.md) 配置训练数据集。
 
 多GPU训练可通过以下方式进行启动：
 ```

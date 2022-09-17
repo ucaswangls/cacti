@@ -15,7 +15,7 @@ Snapshot compressive imaging (SCI) aims to record three-dimensional signals via 
 |  1.7320   | 0.6833  |  0.5784 |  0.9441|  0.5518 |
 
 ## Training DUN-3DUnet 
-Support multi GPUs and single GPU training efficiently, first configure the training dataset based on [model training dataset](cacti/docs/add_datasets.md).
+Support multi GPUs and single GPU training efficiently, first configure the training dataset based on [model training dataset](../../docs/add_datasets.md).
 
 Launch multi GPU training by the statement below:
 

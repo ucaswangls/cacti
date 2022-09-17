@@ -17,7 +17,7 @@ Extensive results on both simulated and real data demonstrate the state-of-the-a
 |  1.6774  | 0.5411  |  0.4500 |  0.9268 |  0.4871|
 
 ## 训练
-支持高效多GPU训练与单GPU训练, 首先根据 [模型训练数据集](cacti/docs/add_datasets_cn.md) 配置训练数据集。
+支持高效多GPU训练与单GPU训练, 首先根据 [模型训练数据集](../../docs/add_datasets_cn.md) 配置训练数据集。
 
 多GPU训练可通过以下方式进行启动：
 ```

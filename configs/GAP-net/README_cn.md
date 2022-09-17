@@ -14,7 +14,7 @@ Snapshot compressive imaging (SCI) systems aim to capture high-dimensional (≥ 
 |  0.0552   | 0.0207  |  0.0206 |  0.0290 |  0.0196|
 
 ## 训练
-支持高效多GPU训练与单GPU训练, 首先根据 [模型训练数据集](cacti/docs/add_datasets_cn.md) 配置训练数据集。
+支持高效多GPU训练与单GPU训练, 首先根据 [模型训练数据集](../../docs/add_datasets_cn.md) 配置训练数据集。
 
 多GPU训练可通过以下方式进行启动：
 ```

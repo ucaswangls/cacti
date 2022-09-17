@@ -5,12 +5,12 @@ Library currently has two preprocessing method
 ### 1. Preprocessing Method in [BIRNAT](../configs/BIRNAT/README_cn.md)
 Crop, rotate, flip and etc., on image dataset before training your model and store the augmented data.
 
-Click [DAVIS_mat]() download augmented dataset, then modify *data_root* value in *configs/_base_/birnat_davis.py* file, make sure *data_root* link to your training dataset path.
+Click [DAVIS_mat]() download augmented dataset, then modify *data_root* value in *configs/\_base_/birnat_davis.py* file, make sure *data_root* link to your training dataset path.
 
 Do not do any augmentation while training. Codes can be found in *cacti/datasets/birnat_davis.py* file.
 
 ### 2. Data Augmentation when Training 
-Download DAVIS 2017 Dataset from [DAVIS website](https://davischallenge.org/), then modify *data_root* value in *configs/_base_/davis.py* file, make sure *data_root* link to your training dataset path.
+Download DAVIS 2017 Dataset from [DAVIS website](https://davischallenge.org/), then modify *data_root* value in *configs/\_base_/davis.py* file, make sure *data_root* link to your training dataset path.
 
 Do not do any augmentation before training. Crop, scale, flip and etc., while training. Codes can be found in *cacti/datasets/pipelines/augmentation.py* file.
 

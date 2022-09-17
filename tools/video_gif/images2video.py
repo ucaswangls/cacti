@@ -5,7 +5,7 @@ import argparse
 
 def parse_args():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--images_dir",type=str,default="work_dirs/ffdnet_gray_mid_color/test_images")
+    parser.add_argument("--images_dir",type=str,default="work_dirs/stformer_base_mid_color/test_images")
     parser.add_argument("--fps",type=int,default=4)
     parser.add_argument("--size_h",type=int,default=512)
     parser.add_argument("--size_w",type=int,default=512)

@@ -14,7 +14,7 @@
 |  0.3011  | 0.2851  |  0.2002 |  0.2252 |  0.2124|
 
 ## Training RevSCI 
-Support multi GPUs and single GPU training efficiently, first configure the training dataset based on [model training dataset](cacti/docs/add_datasets.md).
+Support multi GPUs and single GPU training efficiently, first configure the training dataset based on [model training dataset](../../docs/add_datasets.md).
 
 Launch multi GPU training by the statement below:
 

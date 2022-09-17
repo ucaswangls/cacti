@@ -10,7 +10,7 @@ import argparse
 
 def parse_args():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--video_dir",type=str,default="work_dirs/video/kobe")
+    parser.add_argument("--video_dir",type=str,default="work_dirs/video/Bosphorus")
     parser.add_argument("--dst_dir",type=str,default="work_dirs/video/concat")
     parser.add_argument("--h_pad",type=int,default=80)
     parser.add_argument("--w_pad",type=int,default=40)
@@ -37,7 +37,7 @@ def cv2ImgAddText(img, text, width, height, textColor, font_size):
         img = Image.fromarray(img)
     draw = ImageDraw.Draw(img)
     fontStyle = ImageFont.truetype(
-        "C:/Windows/Fonts/Times New Roman/times.ttf", font_size)
+        "docs/font/times.ttf", font_size)
     if "\n" in text:
         text1,text2 = text.split("\n")
         w1, h1 = fontStyle.getsize(text1)
@@ -60,23 +60,24 @@ if __name__=="__main__":
     resize_h,resize_w = args.resize_h,args.resize_w
 
     _name = osp.basename(video_dir)
-    # algorithms_name = [
-    #     "Measurement",
-    #     "Original",
-    #     "GAP-TV",
-    #     # "FFDNet-gray",
-    #     "PnP-FFDNet-color",
-    #     "PnP-FastDVDnet-gray",
-    #     "PnP-FastDVDnet-color"
-    # ]
     algorithms_name = [
         "Measurement",
         "Original",
         "GAP-TV",
-        "PnP-FastDVDnet",
-        "RevSCI",
-        "DUN-3DUnet"
+        # "PnP-FFDNet-gray",
+        # "PnP-FFDNet-color",
+        "PnP-FastDVDnet-gray",
+        # "PnP-FastDVDnet-color",
+        "STFormer"
     ]
+    # algorithms_name = [
+    #     "Measurement",
+    #     "Original",
+    #     "GAP-TV",
+    #     "PnP-FastDVDnet",
+    #     "RevSCI",
+    #     "DUN-3DUnet"
+    # ]
     video_list = []
     for video_name in algorithms_name:
         video_path = osp.join(video_dir,video_name.lower()+".avi")
@@ -101,7 +102,8 @@ if __name__=="__main__":
                 temp_orig.append(temp_img)
             else:
                 psnr_array[i][j] = compare_psnr(temp_orig[j],temp_img)
-                ssim_array[i][j] = compare_ssim(temp_orig[j],temp_img,channel_axis=-1)
+                multichannel=True if len(temp_img.shape)==3 else False
+                ssim_array[i][j] = compare_ssim(temp_orig[j],temp_img,multichannel=multichannel)
             temp_img = cv2.resize(temp_img,(resize_w,resize_h))
             temp_array[i][j] = temp_img
     video_array = temp_array 

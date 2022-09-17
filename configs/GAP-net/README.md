@@ -14,7 +14,7 @@ Snapshot compressive imaging (SCI) systems aim to capture high-dimensional (≥ 
 |  0.0552   | 0.0207  |  0.0206 |  0.0290 |  0.0196|
 
 ## Training GAP-net
-Support multi GPUs and single GPU training efficiently, first configure the training dataset based on [model training dataset](cacti/docs/add_datasets.md).
+Support multi GPUs and single GPU training efficiently, first configure the training dataset based on [model training dataset](../../docs/add_datasets.md).
 
 Launch multi GPU training by the statement below:
 

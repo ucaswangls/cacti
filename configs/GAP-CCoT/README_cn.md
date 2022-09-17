@@ -30,7 +30,7 @@ available at https://github.com/ucaswangls/GAP-CCoT.
 ## 训练
 根据cuda版本安装对应的cupy，具体请参考[cupy](https://cupy.dev/)官网。
 
-支持高效多GPU训练与单GPU训练, 首先根据 [模型训练数据集](cacti/docs/add_datasets_cn.md) 配置训练数据集。
+支持高效多GPU训练与单GPU训练, 首先根据 [模型训练数据集](../../docs/add_datasets_cn.md) 配置训练数据集。
 
 多GPU训练可通过以下方式进行启动：
 ```

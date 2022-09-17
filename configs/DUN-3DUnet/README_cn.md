@@ -28,7 +28,7 @@ https://github.com/jianzhangcs/SCI3D.
 |  1.7320   | 0.6833  |  0.5784 |  0.9441|  0.5518 |
 
 ## 训练
-支持高效多GPU训练与单GPU训练, 首先根据 [模型训练数据集](cacti/docs/add_datasets_cn.md) 配置训练数据集。
+支持高效多GPU训练与单GPU训练, 首先根据 [模型训练数据集](../../docs/add_datasets_cn.md) 配置训练数据集。
 
 多GPU训练可通过以下方式进行启动：
 ```

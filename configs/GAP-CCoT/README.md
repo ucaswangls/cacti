@@ -30,7 +30,7 @@ available at https://github.com/ucaswangls/GAP-CCoT.
 ## Training GAP-CCoT
 Install the corresponding cupy according to the cuda version, please refer to the [cupy](https://cupy.dev/) official website for details.
 
-Support multi GPUs and single GPU training efficiently, first configure the training dataset based on [model training dataset](cacti/docs/add_datasets.md).
+Support multi GPUs and single GPU training efficiently, first configure the training dataset based on [model training dataset](../../docs/add_datasets.md).
 
 Launch multi GPU training by the statement below:
 

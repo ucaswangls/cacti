@@ -13,7 +13,7 @@ We consider the problem of video snapshot compressive imaging (SCI), where multi
 |  0.2311   | 0.1155  |  0.0988 |  0.1684 |  0.1179|
 
 ## Training BIRNAT
-Support multi GPUs and single GPU training efficiently, first configure the training dataset based on [model training dataset](cacti/docs/add_datasets.md).
+Support multi GPUs and single GPU training efficiently, first configure the training dataset based on [model training dataset](../../docs/add_datasets.md).
 
 Launch multi GPU training by the statement below:
 

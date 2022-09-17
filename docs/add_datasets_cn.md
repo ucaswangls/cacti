@@ -2,12 +2,12 @@
 ## 使用DAVIS数据集
 目前主要支持两种数据预处理方式
 ### 1. [BIRNAT](../configs/BIRNAT/README_cn.md)论文中描述的数据预处理方式
-在训练模型前对DAVIS数据集进行裁剪，旋转等变换，并将变换后的数据进行存储（可点击 [DAVIS_mat]() 下载处理好的数据集，并修改configs/_base_/birnat_davis.py文件中data_root属性值，使其指向训练数据集路径）。
+在训练模型前对DAVIS数据集进行裁剪，旋转等变换，并将变换后的数据进行存储（可点击 [DAVIS_mat]() 下载处理好的数据集，并修改configs/\_base_/birnat_davis.py文件中data_root属性值，使其指向训练数据集路径）。
 
 模型训练过程中一般不对数据做任何额外处理。具体实现代码位于 cacti/datasets/birnat_davis.py 文件中。
 
 ### 2. 训练过程中进行数据增强的方式
-首先在 [DAVIS官网](https://davischallenge.org/) 下载DAVIS 2017数据集，并修改configs/_base_/davis.py文件中data_root属性值，使其指向训练数据集路径。
+首先在 [DAVIS官网](https://davischallenge.org/) 下载DAVIS 2017数据集，并修改configs/\_base_/davis.py文件中data_root属性值，使其指向训练数据集路径。
 
 模型训练前不对数据做任何处理，在训练过程进行裁剪，缩放，翻转等变换。实现代码位于cacti/datasets/pipelines/augmentation.py文件中。
 
