@@ -55,7 +55,7 @@ CACTI Library was born in SCI Lab, Westlake University. We sincerely hope our li
 * [PnP-FastDVDnet (TPAMI 2021)](configs/PnP-FastDVD/README.md) 
 * [PnP-FFDNet (CVPR 2020 oral)](configs/PnP-FFDNet/README.md) 
 
-All model parameters can be download at [Dropbox](https://www.dropbox.com/sh/3cj7nv5l0hfqup9/AAAMbLQXmoVki98cqwuv754ia?dl=0) and [BaiduNetdisk](https://pan.baidu.com/s/1wWqlXQCshwDAyaIkUkinHg) (Code: 8l92)
+All model parameters can be download at [Dropbox](https://www.dropbox.com/sh/3cj7nv5l0hfqup9/AAAMbLQXmoVki98cqwuv754ia?dl=0) and [BaiduNetdisk](https://pan.baidu.com/s/1wRMBsYoyVFFsEI5-lTPy6w?pwd=d2oi)
 
 # CACTI Installation
 Please see the [Installation Manual](docs/install.md) for CACTI Installation
