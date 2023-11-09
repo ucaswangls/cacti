@@ -24,20 +24,20 @@ First, download datasets/middle_scale folder on [Dropbox](https://www.dropbox.co
 Then execute the statement below to launch PnP-FastDVDnet in 6 middle colored simulation dataset (run FastDVDnet_gray)
 
 ```
-python tools/test_iterative.py configs/FastDVD/fastdvd_gray_mid_color.py 
+python tools/test_color_iterative.py configs/PnP-FastDVD/fastdvd_gray_mid_color.py 
 
 ```
 Execute the statement below to launch PnP-FastDVDnet in 6 middle colored simulation dataset
 
 ```
-python tools/test_iterative.py configs/FastDVD/fastdvd_color_mid_color.py 
+python tools/test_color_iterative.py configs/PnP-FastDVD/fastdvd_color_mid_color.py 
 
 ```
 ## Testing PnP-FastDVDnet on Real Dataset
 Launch PnP-FastDVDnet on real dataset by executing the statement below.
 
 ```
-python tools/real_data/test_iterative.py configs/FastDVD/fastdvd_real_cr10.py 
+python tools/real_data/test_iterative.py configs/PnP-FastDVD/fastdvd_real_cr10.py 
 
 ```
 * Notice: Results only show real data when its compress ratio (cr) equals to 10, for other compress ratio, we only need to change the cr value in file *data_root* and in *fastdvd_real_cr10.py* 
