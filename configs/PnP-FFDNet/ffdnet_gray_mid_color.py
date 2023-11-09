@@ -17,3 +17,6 @@ checkpoints="checkpoints/ffdnet/ffdnet_gray.pth"
 sigma_list = [50/255, 25/255, 12/255,6/255]
 iter_list = [20, 20, 20, 10] 
 show_flag=True
+demosaic=True
+color_denoiser=False
+use_cv2_demosaic=True
