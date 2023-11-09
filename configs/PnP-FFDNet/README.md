@@ -16,7 +16,7 @@ First download fffdnet folder and place it in to checkpoints folder from [dropbo
 Execute the statement below to launch PnP-FFDNet in 6 benchmark grayscale simulation dataset
 
 ```
-python tools/test_iterative.py configs/FFDNet/ffdnet.py 
+python tools/test_iterative.py configs/PnP-FFDNet/ffdnet.py 
 
 ```
 ## Testing PnP-FFDNet in Colored Simulation Dataset 
@@ -25,20 +25,20 @@ First, download datasets/middle_scale folder on [Dropbox](https://www.dropbox.co
 Then execute the statement below to launch PnP-FFDNet in 6 middle colored simulation dataset (run FFDNet_gray)
 
 ```
-python tools/test_iterative.py configs/FFDNet/ffdnet_gray_mid_color.py 
+python tools/test_iterative.py configs/PnP-FFDNet/ffdnet_gray_mid_color.py 
 
 ```
 Execute the statement below to launch PnP-FFDNet in 6 middle colored simulation dataset
 
 ```
-python tools/test_iterative.py configs/FFDNet/ffdnet_color_mid_color.py 
+python tools/test_color_iterative.py configs/PnP-FFDNet/ffdnet_color_mid_color.py 
 
 ```
 ## Testing PnP-FFDNet on Real Dataset 
 Launch PnP-FFDNet on real dataset by executing the statement below.
 
 ```
-python tootls/real_data/test_iterative.py configs/FFDNet/ffdnet_real_cr10.py 
+python tootls/real_data/test_iterative.py configs/PnP-FFDNet/ffdnet_real_cr10.py 
 
 ```
 * Notice: Results only show real data when its compress ratio (cr) equals to 10, for other compress ratio, we only need to change the cr value in file *data_root* and in *ffdnet_real_cr10.py* 
