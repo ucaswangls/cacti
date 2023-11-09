@@ -45,7 +45,7 @@ class MatlabBayerData(Dataset):
         except:
             data = h5py.File(osp.join(self.data_root,self.data_name_list[index]))
             orig = data["orig"]
-            pic = orig.value
+            pic = orig
         if self.transpose:
             pic = einops.rearrange(pic,"b c w h->b c h w")
         pic_gt = np.zeros([pic.shape[0] // self.cr,self.cr,self.mask_h,self.mask_w])
