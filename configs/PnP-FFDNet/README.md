@@ -25,7 +25,7 @@ First, download datasets/middle_scale folder on [Dropbox](https://www.dropbox.co
 Then execute the statement below to launch PnP-FFDNet in 6 middle colored simulation dataset (run FFDNet_gray)
 
 ```
-python tools/test_iterative.py configs/PnP-FFDNet/ffdnet_gray_mid_color.py 
+python tools/test_color_iterative.py configs/PnP-FFDNet/ffdnet_gray_mid_color.py 
 
 ```
 Execute the statement below to launch PnP-FFDNet in 6 middle colored simulation dataset
