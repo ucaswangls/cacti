@@ -18,3 +18,5 @@ sigma_list = [50/255, 25/255, 12/255]
 iter_list = [50, 30, 10] 
 show_flag=True
 demosaic = True
+color_denoiser=False
+use_cv2_demosaic=True
