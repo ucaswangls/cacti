@@ -13,7 +13,7 @@ We consider the reconstruction problem of video snapshot compressive imaging (SC
 ## 灰度仿真数据集测试
 执行以下命令可在6个基准灰度仿真数据集上进行测试。
 ```
-python tools/test_iterative.py configs/FastDVD/fastdvd.py 
+python tools/test_iterative.py configs/PnP-FastDVD/fastdvd.py 
 
 ```
 ## 彩色仿真数据集测试
@@ -21,18 +21,18 @@ python tools/test_iterative.py configs/FastDVD/fastdvd.py
 
 执行以下命令可在6个middle彩色仿真数据集上进行测试 (FastDVDnet_gray 版本）。
 ```
-python tools/test_iterative.py configs/FastDVD/fastdvd_gray_mid_color.py 
+python tools/test_iterative.py configs/PnP-FastDVD/fastdvd_gray_mid_color.py 
 
 ```
 执行以下命令可在6个middle彩色仿真数据集上进行测试 (FastDVDnet_color 版本）。
 ```
-python tools/test_iterative.py configs/FastDVD/fastdvd_color_mid_color.py 
+python tools/test_iterative.py configs/PnP-FastDVD/fastdvd_color_mid_color.py 
 
 ```
 ## 真实数据集测试
 执行以下命令可在真实数据集上进行测试。
 ```
-python tools/real_data/test_iterative.py configs/FastDVD/fastdvd_real_cr10.py 
+python tools/real_data/test_iterative.py configs/PnP-FastDVD/fastdvd_real_cr10.py 
 
 ```
 * 注意： 这里仅仅展示了压缩率为10的真实数据，对于其他压缩率我们只需要重新指定fastdvd_real_cr10.py文件中data_root和cr的属性值（以压缩率cr=20为例）
