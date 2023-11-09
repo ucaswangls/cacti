@@ -21,12 +21,12 @@ python tools/test_iterative.py configs/PnP-FastDVD/fastdvd.py
 
 执行以下命令可在6个middle彩色仿真数据集上进行测试 (FastDVDnet_gray 版本）。
 ```
-python tools/test_iterative.py configs/PnP-FastDVD/fastdvd_gray_mid_color.py 
+python tools/test_color_iterative.py configs/PnP-FastDVD/fastdvd_gray_mid_color.py 
 
 ```
 执行以下命令可在6个middle彩色仿真数据集上进行测试 (FastDVDnet_color 版本）。
 ```
-python tools/test_iterative.py configs/PnP-FastDVD/fastdvd_color_mid_color.py 
+python tools/test_color_iterative.py configs/PnP-FastDVD/fastdvd_color_mid_color.py 
 
 ```
 ## 真实数据集测试
