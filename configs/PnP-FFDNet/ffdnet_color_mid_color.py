@@ -23,4 +23,4 @@ iter_list = [20, 20, 20]
 show_flag=True
 demosaic=True
 color_denoiser=True
-use_cv2_demosaic=True
+use_cv2_demosaic=False
