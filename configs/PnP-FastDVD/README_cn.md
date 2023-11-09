@@ -17,7 +17,7 @@ python tools/test_iterative.py configs/FastDVD/fastdvd.py
 
 ```
 ## 彩色仿真数据集测试
-首先在 [Dropbox](https://www.dropbox.com/sh/3cj7nv5l0hfqup9/AAAMbLQXmoVki98cqwuv754ia?dl=0) 的datasets文件夹中下载middle_scale，并将其放置在test_datasets目录下。 
+首先在 [BaiduNetdisk](https://pan.baidu.com/s/1wRMBsYoyVFFsEI5-lTPy6w?pwd=d2oi) 的datasets文件夹中下载middle_scale，并将其放置在test_datasets目录下。 
 
 执行以下命令可在6个middle彩色仿真数据集上进行测试 (FastDVDnet_gray 版本）。
 ```
