@@ -54,7 +54,7 @@ CACTI代码库诞生于西湖大学袁鑫 SCI lab 实验室，我们希望通过
 * [PnP-FastDVDnet (TPAMI 2021)](configs/PnP-FastDVD/README_cn.md) 
 * [PnP-FFDNet (CVPR 2020 oral)](configs/PnP-FFDNet/README_cn.md) 
 
-所有模型参数均可在 [Dropbox](https://www.dropbox.com/sh/3cj7nv5l0hfqup9/AAAMbLQXmoVki98cqwuv754ia?dl=0) 和 [百度网盘](https://pan.baidu.com/s/1wRMBsYoyVFFsEI5-lTPy6w?pwd=d2oi）进行下载。
+所有模型参数均可在 [Dropbox](https://www.dropbox.com/sh/3cj7nv5l0hfqup9/AAAMbLQXmoVki98cqwuv754ia?dl=0) 和 [百度网盘](https://pan.baidu.com/s/1wRMBsYoyVFFsEI5-lTPy6w?pwd=d2oi)进行下载。
 # CACTI安装
 请参考[安装说明文档](docs/install_cn.md)进行安装
 # CACTI代码库
