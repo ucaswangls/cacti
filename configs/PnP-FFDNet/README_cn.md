@@ -13,26 +13,26 @@ Snapshot compressive imaging (SCI) aims to capture the high-dimensional (usually
 
 执行以下命令可在6个基准灰度仿真数据集上进行测试。
 ```
-python tools/test_iterative.py configs/FFDNet/ffdnet.py 
+python tools/test_iterative.py configs/PnP-FFDNet/ffdnet.py 
 
 ```
 ## 彩色仿真数据集测试
-首先在 [Dropbox](https://www.dropbox.com/sh/3cj7nv5l0hfqup9/AAAMbLQXmoVki98cqwuv754ia?dl=0) 的datasets文件夹中下载middle_scale，并将其放置在test_datasets目录下。 
+首先在 [BaiduNetdisk](https://pan.baidu.com/s/1wRMBsYoyVFFsEI5-lTPy6w?pwd=d2oi) 的datasets文件夹中下载middle_scale，并将其放置在test_datasets目录下。 
 
 执行以下命令可在6个middle彩色仿真数据集上进行测试 (FFDNet_gray 版本）。
 ```
-python tools/test_iterative.py configs/FFDNet/ffdnet_gray_mid_color.py 
+python tools/test_color_iterative.py configs/PnP-FFDNet/ffdnet_gray_mid_color.py 
 
 ```
 执行以下命令可在6个middle彩色仿真数据集上进行测试 (FFDNet_color 版本）。
 ```
-python tools/test_iterative.py configs/FFDNet/ffdnet_color_mid_color.py 
+python tools/test_color_iterative.py configs/PnP-FFDNet/ffdnet_color_mid_color.py 
 
 ```
 ## 真实数据集测试
 执行以下命令可在真实数据集上进行测试。
 ```
-python tootls/real_data/test_iterative.py configs/FFDNet/ffdnet_real_cr10.py 
+python tootls/real_data/test_iterative.py configs/PnP-FFDNet/ffdnet_real_cr10.py 
 
 ```
 * 注意： 这里仅仅展示了压缩率为10的真实数据，对于其他压缩率我们只需要重新指定ffdnet_real_cr10.py文件中data_root和cr的属性值（以压缩率cr=20为例）
