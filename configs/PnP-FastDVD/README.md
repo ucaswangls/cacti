@@ -19,7 +19,7 @@ python tools/test_iterative.py configs/FastDVD/fastdvd.py
 
 ```
 ## Testing PnP-FastDVDnet in Colored Simulation Dataset 
-First, download datasets/middle_scale folder on [Dropbox](https://www.dropbox.com/sh/3cj7nv5l0hfqup9/AAAMbLQXmoVki98cqwuv754ia?dl=0), and place it in the test_datasets directory.
+First, download datasets/middle_scale folder on [BaiduNetdisk](https://pan.baidu.com/s/1wRMBsYoyVFFsEI5-lTPy6w?pwd=d2oi), and place it in the test_datasets directory.
 
 Then execute the statement below to launch PnP-FastDVDnet in 6 middle colored simulation dataset (run FastDVDnet_gray)
 
