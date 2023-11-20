@@ -139,7 +139,7 @@ if __name__=="__main__":
                                             sigma,
                                             color_denoiser=color_denoiser,
                                             bayer=bayer,
-                                            use_cv2_demosaic=cfg.use_cv2_demosaic
+                                            use_cv2_demosaic=use_cv2_demosaic
                                 )
                     else:
                         raise TypeError("denoise method undefined!")
